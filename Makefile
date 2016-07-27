@@ -1,11 +1,11 @@
-ifeq ($(CONFIG_OS),y)
+ifeq ($(CONFIG_OS),nuttx)
 -include $(TOPDIR)/.config
 CFLAGS += -I$(TOPDIR)/include
 export CFLAGS CONFIG_OS
 endif
 
 all:
-ifdef CONFIG_OS
+ifeq ($(CONFIG_OS),nuttx)
 ifeq ($(CONFIG_WIFI_STA),y)
 	$(Q) $(MAKE) -C wpa_supplicant
 endif
@@ -19,7 +19,7 @@ else
 endif
 
 clean:
-ifdef CONFIG_OS
+ifeq ($(CONFIG_OS),nuttx)
 ifeq ($(CONFIG_WIFI_STA),y)
 	$(Q) $(MAKE) -C wpa_supplicant clean
 endif
@@ -32,7 +32,7 @@ else
 endif
 
 distclean:
-ifdef CONFIG_OS
+ifeq ($(CONFIG_OS),nuttx)
 ifeq ($(CONFIG_WIFI_STA),y)
 	$(Q) $(MAKE) -C wpa_supplicant distclean
 endif
