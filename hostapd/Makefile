@@ -37,7 +37,13 @@ CFLAGS += -DCONFIG_NATIVE_WINDOWS
 LIBS += -lws2_32
 endif
 
+ifeq ($(CONFIG_OS), nuttx)
 OBJS += hostapd_main.o
+else
+OBJS += main.o
+endif
+
+OBJS += init.o
 #OBJS += config_file.o
 
 OBJS += ../src/ap/hostapd.o

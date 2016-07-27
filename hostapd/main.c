@@ -18,7 +18,7 @@
 
 extern struct hostapd_iface * g_hostapd_iface;
 
-int hostapd_main(void)
+int main(int argc, char *argv[])
 {
 	int ret = 1;
 	size_t i;

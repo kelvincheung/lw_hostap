@@ -103,7 +103,6 @@ CONFIG_ELOOP=eloop
 endif
 OBJS += ../src/utils/$(CONFIG_ELOOP).o
 
-
 ifdef CONFIG_EAPOL_TEST
 CFLAGS += -Werror -DEAPOL_TEST
 endif
@@ -1279,8 +1278,11 @@ ifndef CONFIG_AP
 OBJS_t += ../src/utils/ip_addr.o
 endif
 OBJS_t2 := $(OBJS) $(OBJS_l2) preauth_test.o
-#OBJS += $(CONFIG_MAIN).o
+ifeq ($(CONFIG_OS), nuttx)
 OBJS += wpa_supplicant_main.o
+else
+OBJS += $(CONFIG_MAIN).o
+endif
 
 ifdef CONFIG_PRIVSEP
 OBJS_priv += $(OBJS_d) ../src/drivers/drivers.o

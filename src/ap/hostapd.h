@@ -15,6 +15,7 @@
 #ifndef HOSTAPD_H
 #define HOSTAPD_H
 
+#include "utils/common.h"
 #include "common/defs.h"
 
 struct wpa_driver_ops;
