@@ -2,10 +2,7 @@ ifndef CC
 CC=gcc
 endif
 
-ifndef CFLAGS
-CFLAGS = -MMD -O2 -Wall -g
-endif
-
+CFLAGS += -MMD -Os -Wall -g
 CFLAGS += -I../src
 CFLAGS += -I../src/utils
 

@@ -1,14 +1,16 @@
 ifdef CONFIG_ARCH
 -include $(TOPDIR)/.config
+CFLAGS += -I$(TOPDIR)/include
+export CFLAGS CONFIG_ARCH
 endif
 
 all:
 ifdef CONFIG_ARCH
 ifeq ($(CONFIG_WIFI_STA),y)
-	$(Q) $(MAKE) -C wpa_supplicant CONFIG_ARCH="$(CONFIG_ARCH)"
+	$(Q) $(MAKE) -C wpa_supplicant
 endif
 ifeq ($(CONFIG_WIFI_AP),y)
-	$(Q) $(MAKE) -C hostapd CONFIG_ARCH="$(CONFIG_ARCH)"
+	$(Q) $(MAKE) -C hostapd
 endif
 	$(Q) cp -r libwifi.a $(TOPDIR)/lib/
 else
