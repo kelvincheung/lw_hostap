@@ -10,6 +10,10 @@ CFLAGS += -I../src/utils
 # directory if your C library does not include all header files.
 # CFLAGS += -DUSE_KERNEL_HEADERS -I/usr/src/linux/include
 
+ifdef CONFIG_OS
+CONFIG_NAME=$(CONFIG_OS)_
+endif
+
 -include .config
 
 ifndef CONFIG_OS
@@ -64,7 +68,11 @@ endif
 
 OBJS += ../src/utils/eloop_rtos.o
 OBJS += ../src/utils/wpa_debug.o
+ifeq ($(CONFIG_OS), nuttx)
+OBJS += ../src/utils/os_rtos.o
+else
 OBJS += ../src/utils/os_$(CONFIG_OS).o
+endif
 
 OBJS += ../src/common/ieee802_11_common.o
 
@@ -743,10 +751,6 @@ OBJS += ../src/eap_server/eap_server_methods.o
 
 else
 CFLAGS += -DCONFIG_NO_WPA
-endif
-
-ifdef CONFIG_ARCH
-CONFIG_NAME=$(CONFIG_ARCH)_
 endif
 
 #ALL=hostapd hostapd_cli

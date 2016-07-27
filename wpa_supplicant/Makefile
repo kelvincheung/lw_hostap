@@ -9,8 +9,8 @@ CFLAGS += -MMD -Os -Wall -g
 CFLAGS += -I../src
 CFLAGS += -I../src/utils
 
-ifdef CONFIG_ARCH
-CONFIG_NAME=$(CONFIG_ARCH)_
+ifdef CONFIG_OS
+CONFIG_NAME=$(CONFIG_OS)_
 endif
 
 #ALL=wpa_supplicant wpa_passphrase wpa_cli
@@ -74,7 +74,11 @@ ifeq ($(CONFIG_OS), none)
 CFLAGS += -DOS_NO_C_LIB_DEFINES
 endif
 
+ifeq ($(CONFIG_OS), nuttx)
+OBJS += ../src/utils/os_rtos.o
+else
 OBJS += ../src/utils/os_$(CONFIG_OS).o
+endif
 OBJS_p += ../src/utils/os_$(CONFIG_OS).o
 OBJS_c += ../src/utils/os_$(CONFIG_OS).o
 
@@ -1033,8 +1037,8 @@ endif
 ifdef CONFIG_FIPS
 MD5OBJS += ../src/crypto/md5-non-fips.o
 endif
-ifeq ($(CONFIG_ARCH), csky)
-MD5OBJS += ../src/crypto/md5_nuttx.o
+ifeq ($(CONFIG_OS), nuttx)
+MD5OBJS += ../src/crypto/md5_$(CONFIG_OS).o
 endif
 OBJS += $(MD5OBJS)
 OBJS_p += $(MD5OBJS)
