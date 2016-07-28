@@ -496,6 +496,14 @@ static inline int wpa_drv_signal_monitor(struct wpa_supplicant *wpa_s,
 						     threshold, hysteresis);
 	return -1;
 }
+
+static inline int wpa_drv_signal_poll(struct wpa_supplicant *wpa_s,
+                                      struct wpa_signal_info *si)
+{
+	if (wpa_s->driver->signal_poll)
+		return wpa_s->driver->signal_poll(wpa_s->drv_priv, si);
+	return -1;
+}
 #ifdef CONFIG_WPS
 static inline int wpa_drv_set_ap_wps_ie(struct wpa_supplicant *wpa_s,
 					const struct wpabuf *beacon,

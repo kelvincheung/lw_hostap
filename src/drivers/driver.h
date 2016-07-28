@@ -664,6 +664,34 @@ struct wpa_bss_params {
 #define WPA_STA_SHORT_PREAMBLE BIT(2)
 #define WPA_STA_MFP BIT(3)
 
+
+/* enum chan_width - Channel width definitions */
+enum chan_width {
+	CHAN_WIDTH_20_NOHT,
+	CHAN_WIDTH_20,
+	CHAN_WIDTH_40,
+	CHAN_WIDTH_80,
+	CHAN_WIDTH_80P80,
+	CHAN_WIDTH_160,
+	CHAN_WIDTH_UNKNOWN
+};
+
+/**
+ * struct wpa_signal_info - Information about channel signal quality
+ */
+struct wpa_signal_info {
+	u32 frequency;
+	int above_threshold;
+	int current_signal;
+	int avg_signal;
+	int avg_beacon_signal;
+	int current_noise;
+	int current_txrate;
+	enum chan_width chanwidth;
+	int center_frq1;
+	int center_frq2;
+};
+
 /**
  * struct wpa_driver_ops - Driver interface API definition
  *
@@ -1904,6 +1932,13 @@ struct wpa_driver_ops {
 	 * set_intra_bss - Enables/Disables intra BSS bridging
 	 */
 	int (*set_intra_bss)(void *priv, int enabled);
+
+	/**
+	 * signal_poll - Get current connection information
+	 * @priv: Private driver interface data
+	 * @signal_info: Connection info structure
+	 */
+	int (*signal_poll)(void *priv, struct wpa_signal_info *signal_info);
 };
 
 

@@ -12,6 +12,7 @@
 CONFIG_OS=rtos
 CONFIG_NO_CTRL_IFACE=y
 CONFIG_NO_WPA=y
+#CONFIG_NO_HOSTAPD_LOGGER=y
 
 # Driver interface for Host AP driver
 #CONFIG_DRIVER_HOSTAP=y

@@ -103,6 +103,10 @@ CONFIG_ELOOP=eloop
 endif
 OBJS += ../src/utils/$(CONFIG_ELOOP).o
 
+ifeq ($(CONFIG_OS), nuttx)
+OBJS += ../src/utils/intf_yunos.o
+endif
+
 ifdef CONFIG_EAPOL_TEST
 CFLAGS += -Werror -DEAPOL_TEST
 endif

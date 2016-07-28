@@ -1,5 +1,5 @@
 /*
- * WPA Supplicant / Example program entrypoint
+ * hostapd / Example program entrypoint
  * Copyright (c) 2003-2005, Jouni Malinen <j@w1.fi>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 
  out:
 	/* Deinitialize all interfaces */
-	
+
 	hostapd_interface_deinit_free(g_hostapd_iface);
 	os_free(g_hostapd_iface);
 	g_hostapd_iface = NULL;

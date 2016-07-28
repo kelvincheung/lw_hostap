@@ -114,7 +114,8 @@ void wpa_printf(int level, const char *fmt, ...)
 		} else {
 #endif /* CONFIG_DEBUG_FILE */
 		vprintf(fmt, ap);
-		printf("\n");
+		/*printf("\n");*/
+		putchar("\n");
 #ifdef CONFIG_DEBUG_FILE
 		}
 #endif /* CONFIG_DEBUG_FILE */
@@ -157,7 +158,8 @@ static void _wpa_hexdump(int level, const char *title, const u8 *buf,
 	} else {
 		printf(" [REMOVED]");
 	}
-	printf("\n");
+	/*printf("\n");*/
+	putchar("\n");
 #ifdef CONFIG_DEBUG_FILE
 	}
 #endif /* CONFIG_DEBUG_FILE */

@@ -15,6 +15,8 @@
 #ifndef DEFS_H
 #define DEFS_H
 
+#include "utils/common.h"
+
 #ifdef FALSE
 #undef FALSE
 #endif

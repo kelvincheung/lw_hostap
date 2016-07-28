@@ -82,7 +82,9 @@ endif
 
 OBJS += ../src/common/ieee802_11_common.o
 
-
+ifeq ($(CONFIG_OS), nuttx)
+OBJS += ../src/utils/intf_yunos.o
+endif
 
 ifndef CONFIG_NO_DUMP_STATE
 # define HOSTAPD_DUMP_STATE to include SIGUSR1 handler for dumping state to
